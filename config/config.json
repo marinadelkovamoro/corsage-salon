@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "Netflix_123",
     "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"
