@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     Product.associate = models => {
       Product.hasMany(models.Transaction);
     };
-  
   };
   return Product;
 };
