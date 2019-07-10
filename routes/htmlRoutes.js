@@ -35,6 +35,19 @@ module.exports = app => {
     });
   });
 
+  app.get("/products/:id", function(req, res) {
+    db.Product.findAll({
+      where: {
+        CategoryId: req.params.id
+      }
+    }).then(function(dbProduct) {
+      // console.log(dbProduct);
+      res.render("products", {
+        products: dbProduct
+      });
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", (req, res) => res.render("404"));
 };
