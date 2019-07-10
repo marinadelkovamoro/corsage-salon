@@ -65,4 +65,14 @@ module.exports = app => {
     req.logout();
     res.redirect("/");
   });
+  app.get("api/dresses", (req, res) => {
+    db.Product.findAll({
+      where: {
+        CategoryId: 1
+      }.then(dbExample => {
+        console.log(dbExample);
+        res.json(dbExample);
+      })
+    });
+  });
 };
