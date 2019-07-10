@@ -13,12 +13,9 @@ $("#user-login").on("submit", function(e) {
     }
   })
     .then(function(data) {
-      console.log(data);
-      window.location.replace(data);
+      window.location.replace("/");
     })
     .catch(function(err) {
-      console.log("login failed......");
-
       console.log(err);
       alert(err.responseText);
     });
