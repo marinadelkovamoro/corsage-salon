@@ -17,11 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
 
   User.associate = models => {
-    models.User.hasMany(models.Example);
+    models.User.hasMany(models.Transaction);
   };
 
   // Creating a custom method for our User model.

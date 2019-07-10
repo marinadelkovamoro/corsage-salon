@@ -1,8 +1,8 @@
 {
-    "development": {
-      "use_env_variable": "DEV_MYSQL_URL",
-      "dialect": "mysql"
-    },
+  "development": {
+    "use_env_variable": "DEV_MYSQL_URL",
+    "dialect": "mysql"
+  },
   "test": {
     "username": "root",
     "password": null,
