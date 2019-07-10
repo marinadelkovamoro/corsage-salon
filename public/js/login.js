@@ -17,6 +17,8 @@ $("#user-login").on("submit", function(e) {
       window.location.replace(data);
     })
     .catch(function(err) {
+      console.log("login failed......");
+
       console.log(err);
       alert(err.responseText);
     });

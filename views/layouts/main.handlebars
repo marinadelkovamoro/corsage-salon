@@ -6,25 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Diplomata|Romanesco&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/styles.css">
   <title>Home Page</title>
 </head>
 
-<body>
+<body background="images/main.jpg">
+  <div class="text">
+    <p>And they lived happily ever after...</p>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/">Project Two Starter</a>
+      <a class="navbar-brand" href="/">Corsage Salon</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-          {{#if user}}
           <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
+            <a class="nav-link" href="/dresses">Wedding Gowns</a>
           </li>
-          {{/if}}
+          <li class="nav-item">
+            <a class="nav-link" href="/accessories">Accessories</a>
+          </li>
         </ul>
         <ul class="navbar-nav">
           {{#unless user}}
@@ -44,6 +50,7 @@
       </div>
     </div>
   </nav>
+
   <div class="container">
     {{{body}}}
   </div>

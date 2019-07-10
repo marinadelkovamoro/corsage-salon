@@ -1,11 +1,21 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1>Login Page</h1>
+<div class="container login-page px-4">
+    <div class="container d-flex justify-content-center">
+        <img src="images/logo.jpg">
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
+
+    <div class="container login-content p-4">
+        <h3>
+            {{#if islogin}}
+            Sign-In
+            {{else}}
+            Create Account
+            {{/if}}
+        </h3>
+        {{#if islogin}}
         <form id="user-login">
+        {{else}}
+        <form id="user-sign-up">
+        {{/if}}
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
@@ -15,7 +25,21 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            {{#unless islogin}}
+            <div class="form-group">
+                <label for="cname">Name</label>
+                <input type="text" name="cname" class="form-control" id="cname" placeholder="name">
+            </div>
+            {{/unless}}
+            <button type="submit" class="btn btn-warning">Submit</button>
         </form>
+        <hr>
+        <p>
+            {{#if islogin}}
+            No Account?<a class="btn-create d-inline" href="/signup">Create new account</a></span>
+            {{else}}
+            Already have an account?<a class="btn-create d-inline" href="/login">Sign-In</a></span>
+            {{/if}}
+        </p>
     </div>
 </div>
