@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
   Transaction.associate = function(models) {
     Transaction.belongsTo(models.User, {
       foreignKey: {
-        aloowNull: false
+        allowNull: false
       }
     });
     Transaction.belongsTo(models.Product, {
       foreignKey: {
-        aloowNull: false
+        allowNull: false
       }
     });
   };
