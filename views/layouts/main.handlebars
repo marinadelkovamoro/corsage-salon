@@ -28,19 +28,21 @@
           {{!-- {{#if user}} --}}
           <li class="nav-item">
             <a class="nav-link" href="/products/1">Wedding Gowns</a>
-            {{!-- add handlebar to display the products from the database   --}}
           </li>
           {{!-- {{/if}} --}}
           {{!-- {{#unless user}} --}}
           <li class="nav-item">
-            <a class="nav-link" href="/acce/2">Accessories</a>
+            <a class="nav-link" href="/products/2">Accessories</a>
           </li>
           {{!-- {{/unless}} --}}
         </ul>
         <ul class="navbar-nav">
+          <li>
+          {{#if user}}Hello {{user}}{{/if}}
+          </li>
           {{#unless user}}
           <li class="nav-item">
-            <a class="nav-link" href="/">Signup</a>
+            <a class="nav-link" href="/signup">Signup</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>

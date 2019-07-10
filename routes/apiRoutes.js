@@ -39,8 +39,8 @@ module.exports = app => {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    console.log("get here");
-    res.json("/profile");
+
+    res.json("/");
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -65,14 +65,6 @@ module.exports = app => {
     req.logout();
     res.redirect("/");
   });
-  app.get("api/dresses", (req, res) => {
-    db.Product.findAll({
-      where: {
-        CategoryId: 1
-      }.then(dbExample => {
-        console.log(dbExample);
-        res.json(dbExample);
-      })
-    });
-  });
+
+
 };
