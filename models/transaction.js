@@ -1,12 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Transaction = sequelize.define("Transaction", {
     numberofItems: DataTypes.INTEGER,
-    total: DataTypes.INTEGER,
-    paymentType: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
   });
 
   Transaction.associate = function(models) {
-    Transaction.belongsTo(models.User, {
+    Transaction.belongsTo(models.Order, {
       foreignKey: {
         allowNull: false
       }

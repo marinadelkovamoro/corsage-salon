@@ -26,16 +26,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/dresses">Wedding Gowns</a>
+            <a class="nav-link" href="/products/1">Wedding Gowns</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/accessories">Accessories</a>
+            <a class="nav-link" href="/products/2">Accessories</a>
           </li>
         </ul>
         <ul class="navbar-nav">
+          <li>
+          {{#if user}}Hello {{user}}{{/if}}
+          </li>
           {{#unless user}}
           <li class="nav-item">
-            <a class="nav-link" href="/">Signup</a>
+            <a class="nav-link" href="/signup">Signup</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>

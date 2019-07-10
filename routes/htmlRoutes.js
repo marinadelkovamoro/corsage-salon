@@ -3,8 +3,11 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
   // Load signup page
   app.get("/", (req, res) => {
-    // kktodo : this should be main page.
-    res.render("about");
+    var data = {};
+    if (req.user) {
+      data.user = req.user.name;
+    }
+    res.render("about", data);
   });
 
   // Load login page
@@ -31,6 +34,19 @@ module.exports = app => {
       res.render("example", {
         example: dbExample,
         user: req.user
+      });
+    });
+  });
+
+  app.get("/products/:id", function(req, res) {
+    db.Product.findAll({
+      where: {
+        CategoryId: req.params.id
+      }
+    }).then(function(dbProduct) {
+      // console.log(dbProduct);
+      res.render("products", {
+        products: dbProduct
       });
     });
   });

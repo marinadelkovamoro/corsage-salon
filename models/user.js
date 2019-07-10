@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = models => {
-    models.User.hasMany(models.Transaction);
+    models.User.hasMany(models.Order);
   };
 
   // Creating a custom method for our User model.
