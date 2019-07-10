@@ -3,8 +3,11 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
   // Load signup page
   app.get("/", (req, res) => {
-    // kktodo : this should be main page.
-    res.render("about");
+    var data = {};
+    if (req.user) {
+      data.user = req.user.name;
+    }
+    res.render("about", data);
   });
 
   // Load login page

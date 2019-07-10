@@ -33,6 +33,9 @@
           </li>
         </ul>
         <ul class="navbar-nav">
+          <li>
+          {{#if user}}Hello {{user}}{{/if}}
+          </li>
           {{#unless user}}
           <li class="nav-item">
             <a class="nav-link" href="/">Signup</a>
