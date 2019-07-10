@@ -9,6 +9,9 @@ $("#user-sign-up").on("submit", function(e) {
         .trim(),
       password: $("#password")
         .val()
+        .trim(),
+      name: $("#cname")
+        .val()
         .trim()
     }
   })
