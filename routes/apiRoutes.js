@@ -3,7 +3,7 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = app => {
-  // Get all examples
+  // Get all examples -- kktodo
   app.get("/api/examples", isAuthenticated, (req, res) => {
     db.Example.findAll({
       where: {
@@ -35,6 +35,7 @@ module.exports = app => {
   });
 
   // Create a new example
+  // Create a new example - kktodo
   app.post("/api/examples", isAuthenticated, (req, res) => {
     db.Example.create({
       UserId: req.user.id,
@@ -45,7 +46,7 @@ module.exports = app => {
     });
   });
 
-  // Delete an example by id
+  // Delete an example by id  -kktodo
   app.delete("/api/examples/:id", isAuthenticated, (req, res) => {
     db.Example.destroy({ where: { id: req.params.id } }).then(dbExample => {
       res.json(dbExample);
@@ -85,6 +86,4 @@ module.exports = app => {
     req.logout();
     res.redirect("/");
   });
-
-
 };
