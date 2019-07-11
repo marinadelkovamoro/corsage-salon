@@ -1,19 +1,16 @@
-SELECT *
-FROM exampledb.categories;
-
 INSERT INTO categories
     (name, createdAt, updatedAt)
 VALUES
-    ("wedding gowns", "2019-07-09 14:18:00", "2019-07-09 14:18:00"),
-    ("accessories", "2019-07-09 14:18:00", "2019-07-09 14:18:00");
+    ("Wedding Gowns", "2019-07-09 14:18:00", "2019-07-09 14:18:00"),
+    ("Accessories", "2019-07-09 14:18:00", "2019-07-09 14:18:00");
 
 INSERT INTO products
     (name, quantity, image, details, price, createdAt, updatedAt, CategoryId)
 VALUES
-    ("Ball Gown", 10, "/images/dresses/ball.jpg", "Gorgeous hand-made Ball gown", 5000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1),
-    ("Mermaid Gown", 10, "/images/dresses/mermaid.jpg", "Gorgeous hand-made Mermaid gown", 6000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1),
-    ("Princess Gown", 10, "/images/dresses/princess.jpg", "Gorgeous hand-made Princess gown", 7000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1),
-    ("V-Neck Gown", 10, "/images/dresses/vneck.jpg", "Gorgeous hand-made V-neck gown", 5000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1);
+    ("CELESTE Ball Gown", 10, "/images/dresses/ball.jpg", "Luxurious lace combined with organza and tulle create this alluring Ball gown with sweetheart neckline, long sheer sleeves, illusion back and semi-Cathedral train.", 5000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1),
+    ("ESTELLE Mermaid Gown", 10, "/images/dresses/mermaid.jpg", "Decadent lace and feathers are the focal point of this stunning fit n flare gown with long sheer lace sleeves, ornate illlusion back with lace accents and sweep feather train.", 6000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1),
+    ("CLOE Princess Gown", 10, "/images/dresses/princess.jpg", "Three dimensional flowers and lace adorn this romantic off the shoulder organza Ball gown featuring a luxurious semi Cathedral train.", 7000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1),
+    ("MAIA Sheath V-Neck Gown", 10, "/images/dresses/vneck.jpg", "This stunning, sleeveless, lace sheath gown is wrapped in a striking chapel train with flowing edges and features a V-neckline with sheer accents and dramatic low back.", 5000, "2019-07-09 14:18:00", "2019-07-09 14:18:00", 1);
 
 INSERT INTO products
     (name, quantity, image, details, price, createdAt, updatedAt, CategoryId)
