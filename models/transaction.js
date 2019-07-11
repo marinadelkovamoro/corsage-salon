@@ -7,12 +7,12 @@ module.exports = (sequelize, DataTypes) => {
   Transaction.associate = function(models) {
     Transaction.belongsTo(models.Order, {
       foreignKey: {
-        aloowNull: false
+        allowNull: false
       }
     });
     Transaction.belongsTo(models.Product, {
       foreignKey: {
-        aloowNull: false
+        allowNull: false
       }
     });
   };
