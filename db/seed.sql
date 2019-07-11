@@ -1,6 +1,5 @@
-SELECT *
-FROM exampledb.categories;
 
+USE exampledb;
 INSERT INTO categories
     (name, createdAt, updatedAt)
 VALUES
