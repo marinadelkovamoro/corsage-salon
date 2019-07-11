@@ -14,6 +14,26 @@ module.exports = app => {
     });
   });
 
+  // Create new product endpoint. TODO Call on Coinbase API to generate checkout link.
+  app.post("/api/products", (req, res) => {
+  // TODO Step 1) Create bitcoin checkout page link here
+  // Step 2) Create product
+    db.Product.create({
+      name: req.body.name,
+      quantity: req.body.quantity,
+      image: req.body.image,
+      details: req.body.details,
+      price: req.body.price,
+      CategoryId: req.body.CategoryId
+    }).then(product_returned => {
+      console.log("Product created");
+      console.log(product_returned);
+      console.log(" ");
+      console.log(" ");
+      res.json(product_returned);
+    });
+  });
+
   // Create a new example
   app.post("/api/examples", isAuthenticated, (req, res) => {
     db.Example.create({
