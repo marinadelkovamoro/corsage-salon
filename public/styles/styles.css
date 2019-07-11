@@ -2,13 +2,17 @@ body,
 html {
     height: 100%;
     margin: 0;
-    background-position: center;
+    /* background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
 
 body {
     position: relative;
+    background-image: url("../images/main.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* Bottom right text */
