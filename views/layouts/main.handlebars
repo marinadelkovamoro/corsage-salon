@@ -11,11 +11,6 @@
   <title>Home Page</title>
 </head>
 
-<<<<<<< HEAD
-{{!-- <body background="images/main.jpg"> --}}
-
-=======
->>>>>>> 3dd9ddf9d147b504ca2f15875a858381253bd5d7
 <body>
   <div class="text">
     <p>And they lived happily ever after...</p>
@@ -30,6 +25,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
+
           {{#each categories}}
           <li class="nav-item">
             <a class="nav-link" href="/products/{{id}}">{{name}}</a>
@@ -39,6 +35,9 @@
         <ul class="navbar-nav">
           <li>
             {{#if user}}Hello {{user}}{{/if}}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Shopping Cart</a>
           </li>
           {{#unless user}}
           <li class="nav-item">
