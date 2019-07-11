@@ -2,24 +2,26 @@ body,
 html {
     height: 100%;
     margin: 0;
-    /* background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    background-image: url("../images/main.jpg");
+}
+.card {
+background-color: rgba(255, 255, 255, 0.7);
+font-family: 'Playfair Display SC', serif;
+font-size: 25px;
 }
 
 body {
     position: relative;
-    background-image: url("../images/main.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 /* Bottom right text */
 .text {
     position: absolute;
     top: 180px;
-    right: 860px;
+    right: 1060px;
     color: brown;
     padding-left: 60px;
     font-family: 'Romanesco', cursive;

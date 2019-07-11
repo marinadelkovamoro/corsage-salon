@@ -4,3 +4,4 @@ var myCart = JSON.parse(localStorage.getItem("mycart"));
 if (!myCart) {
     myCart = {};
 }
+
