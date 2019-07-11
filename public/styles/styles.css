@@ -1,9 +1,16 @@
-body, html {
-  height: 100%;
-  margin: 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+body,
+html {
+    height: 100%;
+    margin: 0;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    background-image: url("../images/main.jpg");
+}
+.card {
+background-color: rgba(255, 255, 255, 0.7);
+font-family: 'Playfair Display SC', serif;
+font-size: 25px;
 }
 
 body {
@@ -12,13 +19,13 @@ body {
 
 /* Bottom right text */
 .text {
-  position: absolute;
-  top: 180px;
-  right: 860px;
-  color: brown;
-  padding-left: 60px;
-  font-family: 'Romanesco', cursive;
-  font-size: 50px;
+    position: absolute;
+    top: 180px;
+    right: 1060px;
+    color: brown;
+    padding-left: 60px;
+    font-family: 'Romanesco', cursive;
+    font-size: 50px;
 }
 
 nav, .navbar-brand {

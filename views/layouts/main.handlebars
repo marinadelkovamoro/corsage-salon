@@ -11,7 +11,7 @@
   <title>Home Page</title>
 </head>
 
-<body background="images/main.jpg">
+<body>
   <div class="text">
     <p>And they lived happily ever after...</p>
   </div>
@@ -25,12 +25,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
+          {{!-- {{#if user}} --}}
           <li class="nav-item">
             <a class="nav-link" href="/products/1">Wedding Gowns</a>
           </li>
+          {{!-- {{/if}} --}}
+          {{!-- {{#unless user}} --}}
           <li class="nav-item">
             <a class="nav-link" href="/products/2">Accessories</a>
           </li>
+          {{!-- {{/unless}} --}}
         </ul>
         <ul class="navbar-nav">
           <li>
