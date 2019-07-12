@@ -8,19 +8,16 @@
         <p class="card-text">{{details}}</p>
 
         <div class="card-text">
-            <label>Quantity: </label>
-            <input type="number" placeholder="">
+          <label>Quantity: </label>
+          <input type="number" id="num-items" min="1" placeholder="" value="1" onkeydown="return false">
         </div>
 
-        <p class="card-text">Price: {{price}}</p>
+        <p class="card-text price" value="{{price}}">Price: {{price}}</p>
         <p class="card-text"></p>
-        <a href="#" class="btn btn-secondary" productId="{{id}}">Purchase</a>
+        <a href="#" class="btn btn-secondary btn-purchase" productId="{{id}}">Purchase</a>
 
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </div>
 {{/each}}
