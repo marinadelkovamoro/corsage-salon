@@ -6,28 +6,17 @@
         <img src={{image}} class="img-thumbnail float-left" style="width: 30rem;" alt="...">
         <h2 class="card-title">{{name}}</h2>
         <p class="card-text">{{details}}</p>
-        {{!-- <div class="row float-right"></div> --}}
-
         <div class="card-text">
-            <label>Quantity: </label>
-            <input type="number" placeholder="">
+          <label>Quantity: </label>
+          <input type="number" min="1" step="1" placeholder="" value="1" onkeydown="return false">
         </div>
-        {{!-- </div> --}}
-
-
-
-        <p class="card-text">Price: {{price}}</p>
-        <p class="card-text" id={{id}}>Bitcoin Price: ${{calculateBitcoin price}}</p>
+        <p class="card-text price" value="{{price}}">Price: ${{price}}</p>
+        <p class="card-text" id={{id}}>Bitcoin: ₿{{calculateBitcoin price}}</p>
         
         <p class="card-text"></p>
-        <a href="#" class="btn btn-secondary" productId="{{id}}">Purchase</a>
-
+        <a class="btn btn-secondary btn-purchase" productId="{{id}}">Add to <i class="fa fa-shopping-cart fa-lg"></i></a>
       </div>
     </div>
   </div>
 </div>
-</div>
-</div>
-</div>
 {{/each}}
-

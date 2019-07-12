@@ -1,37 +1,58 @@
-// const https = require('https');
 const axios = require('axios');
 
 global.bitcoinRate = .003;
 
 
-https.get('https://bitpay.com/api/rates', (resp) => {
-  let data = '';
 
-  // A chunk of data has been recieved.
-  resp.on('data', (chunk) => {
-    data += chunk;
+axios.get('https://bitpay.com/api/rates')
+  .then(response => {
+    console.log(" ");
+        console.log(" ");
+        console.log(" ");
+        console.log("====================================================");
+        console.log("Bitcoin Received data!");
+        global.bitcoinRate =  response.data[2].rate;
+        // BITCOIN = $11,622;
+        // DOLLAR = 1 / 11622
+        console.log(response.data[2].rate);
+        console.log("====================================================");
+        console.log(" ");
+        console.log(" ");
+        console.log(" ");
+    
+  })
+  .catch(error => {
+    console.log(error);
   });
 
-  // The whole response has been received. Print out the result.
-  resp.on('end', () => {
-    console.log(" ");
-    console.log(" ");
-    console.log(" ");
-    console.log("====================================================");
-    console.log("Received data!");
-    console.log(JSON.parse(data));
-    // console.log(resp);
-    console.log("====================================================");
-    // console.log(data[0]);
-    // console.log(data);
-    console.log(" ");
-    console.log(" ");
-    console.log(" ");
-  });
+// https.get('https://bitpay.com/api/rates', (resp) => {
+//   let data = '';
 
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
+//   // A chunk of data has been recieved.
+//   resp.on('data', (chunk) => {
+//     data += chunk;
+//   });
+
+//   // The whole response has been received. Print out the result.
+//   resp.on('end', () => {
+//     console.log(" ");
+//     console.log(" ");
+//     console.log(" ");
+//     console.log("====================================================");
+//     console.log("Received data!");
+//     console.log(JSON.parse(data));
+//     // console.log(resp);
+//     console.log("====================================================");
+//     // console.log(data[0]);
+//     // console.log(data);
+//     console.log(" ");
+//     console.log(" ");
+//     console.log(" ");
+//   });
+
+// }).on("error", (err) => {
+//   console.log("Error: " + err.message);
+// });
 
 
 // const response = await fetch('https://bitpay.com/api/rates');

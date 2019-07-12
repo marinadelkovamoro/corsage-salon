@@ -3,7 +3,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
   // Load signup page
   app.get("/", (req, res) => {
-    db.Category.findAll({}).then(function(catData) {
+    db.Category.findAll({}).then(function (catData) {
       var data = { categories: catData };
       if (req.user) {
         data.user = req.user.name;
@@ -22,9 +22,19 @@ module.exports = app => {
     res.render("login", { islogin: false, layout: "blank" })
   );
 
+  app.get("/cart", (req, res) => {
+    db.Category.findAll({}).then(function (catData) {
+      var data = { categories: catData };
+      if (req.user) {
+        data.user = req.user.name;
+      }
+      res.render("shoppingcart", data);
+    });
+  });
+
   // get all product by id
-  app.get("/products/:id", function(req, res) {
-    db.Category.findAll({}).then(function(catData) {
+  app.get("/products/:id", function (req, res) {
+    db.Category.findAll({}).then(function (catData) {
       var data = { categories: catData };
       data.calculateBitcoin = 0.0;
       if (req.user) {
@@ -34,7 +44,7 @@ module.exports = app => {
         where: {
           CategoryId: req.params.id
         }
-      }).then(function(dbProduct) {
+      }).then(function (dbProduct) {
         data.products = dbProduct;
         res.render("products", data);
       });
