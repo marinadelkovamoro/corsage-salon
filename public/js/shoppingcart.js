@@ -5,6 +5,7 @@ if (!myCart) {
 
 $("#cart-btn-checkout").on("click", function(event) {
   // save to database. then display confirmation page.
+  console.log(myCart)
 });
 
 $("#cart-btn-continue").on("click", function(event) {

@@ -65,4 +65,11 @@ module.exports = app => {
     req.logout();
     res.redirect("/");
   });
+
+  // app.post("/api/order", (req, res) => {
+  //   db.Order.create(req.body)
+  //   .then(function(){
+  //     res.
+  //   });
+  // });
 };
