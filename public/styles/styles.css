@@ -15,7 +15,7 @@ font-size: 25px;
 }
 
 body {
-    position: relative;
+  position: relative;
 }
 
 /* Top Left text over background image */
@@ -61,6 +61,7 @@ nav, .navbar-brand {
   padding: 5px;
   margin-left: 10px;
 }
+
 .btn-create:hover {
   text-decoration: none;
 }

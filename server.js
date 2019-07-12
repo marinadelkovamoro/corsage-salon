@@ -2,15 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-
 const db = require("./models");
-
 const app = express();
 const PORT = process.env.PORT || 8080;
 const morgan = require("morgan");
-
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
+const bitcoin = require("./helpers/bitcoin-rate"); 
+
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +28,7 @@ app.use(
     saveUninitialized: true
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -35,7 +36,8 @@ app.use(passport.session());
 app.engine(
   "handlebars",
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: "main",
+    helpers: require("./helpers/handlebars.js")
   })
 );
 app.set("view engine", "handlebars");
