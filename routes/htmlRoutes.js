@@ -36,17 +36,16 @@ module.exports = app => {
   app.get("/products/:id", function (req, res) {
     db.Category.findAll({}).then(function (catData) {
       var data = { categories: catData };
+      data.calculateBitcoin = 0.0;
       if (req.user) {
         data.user = req.user.name;
       }
-
       db.Product.findAll({
         where: {
           CategoryId: req.params.id
         }
       }).then(function (dbProduct) {
         data.products = dbProduct;
-
         res.render("products", data);
       });
     });
