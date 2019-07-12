@@ -4,6 +4,16 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = app => {
   // Get all examples -- kktodo
+  app.post("/api/savecart", (req, res) => {
+    if (req.user) {
+      // var cartData = JSON.parse(req.body.data);
+      console.log(req.body.cart);
+    } else {
+      // not logged in
+      res.status(401).end();;
+    }
+  });
+
   app.get("/api/examples", isAuthenticated, (req, res) => {
     db.Example.findAll({
       where: {
@@ -16,8 +26,8 @@ module.exports = app => {
 
   // Create new product endpoint. TODO Call on Coinbase API to generate checkout link.
   app.post("/api/products", (req, res) => {
-  // TODO Step 1) Create bitcoin checkout page link here
-  // Step 2) Create product
+    // TODO Step 1) Create bitcoin checkout page link here
+    // Step 2) Create product
     db.Product.create({
       name: req.body.name,
       quantity: req.body.quantity,
