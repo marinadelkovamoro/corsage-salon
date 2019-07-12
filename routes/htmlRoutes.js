@@ -3,7 +3,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
   // Load signup page
   app.get("/", (req, res) => {
-    db.Category.findAll({}).then(function (catData) {
+    db.Category.findAll({}).then(function(catData) {
       var data = { categories: catData };
       if (req.user) {
         data.user = req.user.name;
@@ -23,7 +23,7 @@ module.exports = app => {
   );
 
   app.get("/cart", (req, res) => {
-    db.Category.findAll({}).then(function (catData) {
+    db.Category.findAll({}).then(function(catData) {
       var data = { categories: catData };
       if (req.user) {
         data.user = req.user.name;
@@ -32,9 +32,11 @@ module.exports = app => {
     });
   });
 
+ 
+
   // get all product by id
-  app.get("/products/:id", function (req, res) {
-    db.Category.findAll({}).then(function (catData) {
+  app.get("/products/:id", function(req, res) {
+    db.Category.findAll({}).then(function(catData) {
       var data = { categories: catData };
       data.calculateBitcoin = 0.0;
       if (req.user) {
@@ -44,10 +46,28 @@ module.exports = app => {
         where: {
           CategoryId: req.params.id
         }
-      }).then(function (dbProduct) {
+      }).then(function(dbProduct) {
         data.products = dbProduct;
         res.render("products", data);
       });
+    });
+  });
+
+  // PUT route for updating posts
+  app.put("/products", (req, res) => {
+    // Add code here to update a post using the values in req.body, where the id is equal to
+    // req.body.id and return the result to the user using res.json
+    db.Product.update(
+      {
+        quantity: req.body.quantity
+      },
+      {
+        where: {
+          id: req.body.id
+        }
+      }
+    ).then(updateProduct => {
+      res.json(updateProduct);
     });
   });
 
