@@ -1,11 +1,12 @@
-body,
-html {
+body {
     height: 100%;
     margin: 0;
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
     background-image: url("../images/main.jpg");
+    background-attachment: fixed;
+
 }
 .card {
 background-color: rgba(255, 255, 255, 0.7);
@@ -33,7 +34,13 @@ nav, .navbar-brand {
     font-size: 30px;
 }
 
+#num-items {
+  width: 120px;
+}
 
+.link-cart {
+  cursor: pointer;
+}
 
 /* style for login/signup pages */
 .login-page {
@@ -61,4 +68,34 @@ nav, .navbar-brand {
 .form-control {
   background-color: rgb(173, 215, 229, 0.7);
   border: 1px solid darkgray;
+}
+
+/* Styling for shopping cart page*/
+#cart-page {
+  height: 450px;
+  background-color: rgba(255, 255,255, 0.85);
+  overflow-y: auto;
+}
+
+.cart-item-name {
+  color: blue;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.cart-item-image {
+  max-width: 60px;
+}
+
+.btn-cart-delete {
+  border-radius: 5px;
+}
+
+#cart-buttons {
+  background-color: rgba(255, 255,255, 0.85);
+}
+
+#cart-btn-continue, #cart-btn-checkout {
+  padding: 10px;
+  margin-right: 10px;
 }

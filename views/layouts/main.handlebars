@@ -11,7 +11,7 @@
   <title>Home Page</title>
 </head>
 
-<body>
+<body onload="getCart()">
   <div class="text">
     <p>And they lived happily ever after...</p>
   </div>
@@ -37,7 +37,7 @@
             {{#if user}}Hello {{user}}{{/if}}
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Shopping Cart</a>
+            <a class="nav-link" href="/cart">Shopping Cart</a>
           </li>
           {{#unless user}}
           <li class="nav-item">
@@ -69,9 +69,12 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
-  <script src="/js/shoppingcart.js"></script>
   <script src="/js/signup.js"></script>
   <script src="/js/login.js"></script>
+    <script src="/js/product.js"></script>
+      <script src="/js/shoppingcart.js"></script>
+
+
 </body>
 
 </html>
