@@ -8,7 +8,7 @@
         <p class="card-text">{{details}}</p>
         <div class="card-text">
           <label>Quantity: </label>
-          <input type="number" min="1" step="1" placeholder="" value="1" onkeydown="return false">
+          <input type="number" id="num-items" min="1" step="1" placeholder="" value="1" onkeydown="return false">
         </div>
         <p class="card-text price" value="{{price}}">Price: ${{price}}</p>
         <p class="card-text" id={{id}}>Bitcoin: ₿{{calculateBitcoin price}}</p>
