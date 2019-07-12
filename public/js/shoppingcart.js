@@ -3,6 +3,30 @@ if (!myCart) {
   myCart = [];
 }
 
+// remove item from local storage
+
+function removeItemFromCart() {
+  var productId = parseFloat($(this).attr("data-productId"));
+  // get the array of all products from the local storage
+  // run through this array
+  const items = JSON.parse(localStorage.getItem("mycart"));
+  for (var i = 0; i < items.length; i++) {
+    // if the product ids are equal(match), remove it from the array
+    if (productId === items[i].id) {
+      // update the local storage
+      //  at this index, take out one item from the array
+      items.splice(i, 1);
+    }
+  }
+  // put the arraw back in local storage
+  localStorage.setItem("mycart", JSON.stringify(items));
+
+  // re-render the cart handlebar
+  window.location.replace("/cart");
+}
+
+$(document).on("click", ".btn-cart-delete", removeItemFromCart);
+
 $("#cart-btn-checkout").on("click", function(event) {
   // save to database. then display confirmation page.
   $.ajax("/api/orders", {
@@ -56,6 +80,7 @@ function getCart() {
 
     btnDelete = $("<button>")
       .addClass("btn-cart-delete")
+      .attr("data-productId", myCart[i].id)
       .text("delete");
     pDelete = $("<div>")
       .addClass("col")
