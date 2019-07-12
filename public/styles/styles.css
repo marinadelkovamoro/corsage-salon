@@ -18,7 +18,7 @@ body {
     position: relative;
 }
 
-/* Bottom right text */
+/* Top Left text over background image */
 .text {
     position: absolute;
     top: 180px;
@@ -26,27 +26,27 @@ body {
     color: brown;
     padding-left: 60px;
     font-family: 'Romanesco', cursive;
+    letter-spacing: 1px;
     font-size: 50px;
 }
 
+/* Navbar */
 nav, .navbar-brand {
     font-family: 'Romanesco', cursive;
-    font-size: 30px;
+    font-size: 35px;
+    letter-spacing: 0.5px;
 }
 
 #num-items {
   width: 120px;
 }
 
-.link-cart {
-  cursor: pointer;
-}
-
 /* style for login/signup pages */
 .login-page {
   width: 540px;
   background-color: rgba(211, 211,211, 0.7);
-  padding-bottom: 30px;
+  padding: 30px;
+  margin-top: 20px;
 }
 
 .login-content {
@@ -55,7 +55,7 @@ nav, .navbar-brand {
 }
 
 .btn-create {
-  background-color: lightgray;
+  background-color: rgb(211, 211, 211);
   border: 1px solid lightslategrey;
   border-radius: 5px;
   padding: 5px;
@@ -66,8 +66,17 @@ nav, .navbar-brand {
 }
 
 .form-control {
-  background-color: rgb(173, 215, 229, 0.7);
+  background-color: rgba(182, 219, 231, 0.7);
   border: 1px solid darkgray;
+}
+
+#user-sign-up {
+  font-weight: bold;
+}
+
+.logo {
+  width: 60%;
+  height: 60%;
 }
 
 /* Styling for shopping cart page*/
