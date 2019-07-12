@@ -6,6 +6,7 @@ if (!myCart) {
 
 function handlePurchaseButton(e) {
   e.preventDefault();
+  console.log("get here");
 
   var transaction = {
     id: parseInt($(this).attr("productid")),
