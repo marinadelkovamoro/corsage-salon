@@ -23,11 +23,12 @@ body {
     position: absolute;
     top: 180px;
     right: 1060px;
-    color: brown;
+    color: rgba(165, 42, 42, 0.500);
     padding-left: 60px;
     font-family: 'Romanesco', cursive;
     letter-spacing: 1px;
     font-size: 50px;
+    z-index: -10;
 }
 
 /* Navbar */

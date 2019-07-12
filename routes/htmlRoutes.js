@@ -32,6 +32,8 @@ module.exports = app => {
     });
   });
 
+ 
+
   // get all product by id
   app.get("/products/:id", function(req, res) {
     db.Category.findAll({}).then(function(catData) {
