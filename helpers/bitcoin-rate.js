@@ -1,4 +1,38 @@
+// const https = require('https');
+const axios = require('axios');
+
 global.bitcoinRate = .003;
+
+
+https.get('https://bitpay.com/api/rates', (resp) => {
+  let data = '';
+
+  // A chunk of data has been recieved.
+  resp.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  // The whole response has been received. Print out the result.
+  resp.on('end', () => {
+    console.log(" ");
+    console.log(" ");
+    console.log(" ");
+    console.log("====================================================");
+    console.log("Received data!");
+    console.log(JSON.parse(data));
+    // console.log(resp);
+    console.log("====================================================");
+    // console.log(data[0]);
+    // console.log(data);
+    console.log(" ");
+    console.log(" ");
+    console.log(" ");
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
+
 
 // const response = await fetch('https://bitpay.com/api/rates');
 // const myJson = await response.json(); //extract JSON from the http response
@@ -18,18 +52,18 @@ global.bitcoinRate = .003;
 //   });
 
 
-  var options = {
-    host: url,
-    port: 80,
-    path: 'https://bitpay.com/api/rates',
-    method: 'GET'
-  };
+  // var options = {
+  //   host: url,
+  //   port: 80,
+  //   path: 'https://bitpay.com/api/rates',
+  //   method: 'GET'
+  // };
   
-  http.request(options, function(res) {
-    console.log('STATUS: ' + res.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(res.headers));
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      console.log('BODY: ' + chunk);
-    });
-  }).end();
+  // http.request(options, function(res) {
+  //   console.log('STATUS: ' + res.statusCode);
+  //   console.log('HEADERS: ' + JSON.stringify(res.headers));
+  //   res.setEncoding('utf8');
+  //   res.on('data', function (chunk) {
+  //     console.log('BODY: ' + chunk);
+  //   });
+  // }).end();
