@@ -1,14 +1,26 @@
 {{#each products}}
-<div class="card-group">
-  <div class="card" style="width: 18rem;">
+<div class="container">
+  <div class="card-group">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body text-right">
+        <img src={{image}} class="img-thumbnail float-left" style="width: 30rem;" alt="...">
+        <h2 class="card-title">{{name}}</h2>
+        <p class="card-text">{{details}}</p>
 
-    <div class="card-body text-right">
-      <img src={{image}} class="img-thumbnail float-left" style="width: 30rem;" alt="...">
-      <h2 class="card-title">{{name}}</h2>
-      <p class="card-text">{{details}}</p>
-      <p class="card-text price" value="{{price}}">Price USD: {{price}}</p>
-      <button class="btn btn-secondary btn-purchase" productid="{{id}}">Purchase</button>
+        <div class="card-text">
+            <label>Quantity: </label>
+            <input type="number" placeholder="">
+        </div>
+
+        <p class="card-text">Price: {{price}}</p>
+        <p class="card-text"></p>
+        <a href="#" class="btn btn-secondary" productId="{{id}}">Purchase</a>
+
+      </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 </div>
 {{/each}}
