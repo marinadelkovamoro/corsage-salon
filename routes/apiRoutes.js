@@ -16,8 +16,8 @@ module.exports = app => {
 
   // Create new product endpoint. TODO Call on Coinbase API to generate checkout link.
   app.post("/api/products", (req, res) => {
-  // TODO Step 1) Create bitcoin checkout page link here
-  // Step 2) Create product
+    // TODO Step 1) Create bitcoin checkout page link here
+    // Step 2) Create product
     db.Product.create({
       name: req.body.name,
       quantity: req.body.quantity,
@@ -80,10 +80,24 @@ module.exports = app => {
         res.status(422).json(err.errors[0].message);
       });
   });
+  app.post("/api/orders", function(req, res) {
+    console.log(req.body.order);
+    // db.Products.(["quantity"], [req.body.quantity], function(result) {
+    //   res.json({ quantity: result.quantity });
+    // });
+
+  });
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
   });
+
+  // app.post("/api/order", (req, res) => {
+  //   db.Order.create(req.body)
+  //   .then(function(){
+  //     res.
+  //   });
+  // });
 };
