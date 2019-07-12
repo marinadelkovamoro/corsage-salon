@@ -42,6 +42,24 @@ module.exports = app => {
     });
   });
 
+  // PUT route for updating posts
+  app.put("/products", (req, res) => {
+    // Add code here to update a post using the values in req.body, where the id is equal to
+    // req.body.id and return the result to the user using res.json
+    db.Category.update(
+      {
+        quantity: req.body.quantity
+      },
+      {
+          where: {
+            id: req.body.id
+          }
+        }
+    ).then(updateProduct => {
+      res.json(updateProduct);
+    });
+  });
+
   // create shopping cart
 
   // Render 404 page for any unmatched routes
