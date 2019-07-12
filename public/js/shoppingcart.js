@@ -16,6 +16,7 @@ function getCart() {
     return;
   }
 
+  console.log(myCart);
   var newRow;
   var pName, pImg, pPrice, pUnits, pDelete;
   var btnDelete, imgElem;
@@ -32,7 +33,7 @@ function getCart() {
 
     pPrice = $("<div>").addClass("col");
     pPrice.append($("<p>").text("$" + myCart[i].price.toLocaleString()));
-    pPrice.append($("<p>").text("Bitcoins"));
+    // pPrice.append($("<p>").text("₿" + myCart[i].price.calculateBitcoin()));
 
     pUnits = $("<div>").addClass("col").text(myCart[i].numItems);
 

@@ -1,9 +1,7 @@
 const axios = require('axios');
-
 global.bitcoinRate = .003;
 
-
-
+// Retrieves Current Bitcoin Rate
 axios.get('https://bitpay.com/api/rates')
   .then(response => {
     console.log(" ");
@@ -12,8 +10,6 @@ axios.get('https://bitpay.com/api/rates')
         console.log("====================================================");
         console.log("Bitcoin Received data!");
         global.bitcoinRate =  response.data[2].rate;
-        // BITCOIN = $11,622;
-        // DOLLAR = 1 / 11622
         console.log(response.data[2].rate);
         console.log("====================================================");
         console.log(" ");

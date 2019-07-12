@@ -10,3 +10,15 @@
     <button type="button" class="btn btn-warning" id="cat-btn-checkout">Checkout</button>
 </div>
 </div>
+<script>
+  $.get('https://bitpay.com/api/rates')
+  .then(data => {
+    console.log(data)
+    console.log("Bitcoin Received Data");
+    // window.bitcoinRate = data[2].rate;
+    console.log(data[2].rate);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+</script>
