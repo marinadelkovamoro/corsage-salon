@@ -90,10 +90,26 @@ module.exports = app => {
         res.status(422).json(err.errors[0].message);
       });
   });
+  app.post("/api/orders", function(req, res) {
+
+    if (req.user) {
+      console.log(req.body.order);
+    } else {
+      // not logged in
+      res.status(401).end();;
+    }
+  });
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
   });
+
+  // app.post("/api/order", (req, res) => {
+  //   db.Order.create(req.body)
+  //   .then(function(){
+  //     res.
+  //   });
+  // });
 };

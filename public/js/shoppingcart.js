@@ -5,21 +5,17 @@ if (!myCart) {
 
 $("#cart-btn-checkout").on("click", function(event) {
   // save to database. then display confirmation page.
-  var cartData = {
-    cart: myCart
-  };
-  console.log(cartData);
-
-  $.ajax({
-    method: "POST",
-    url: "/api/savecart",
-    data: cartData
+  $.ajax("/api/orders", {
+    type: "POST",
+    data: {
+      order: myCart
+    }
   })
-    .then(function(data) {
+    .then(function (data) {
       // Reload the page to get the updated list
-        console.log(data);
-      })
-    .catch(function(error) {
+      console.log(data);
+    })
+    .catch(function (error) {
       if (error.status === 401) {
         // user not log in yet
         window.location.replace("/login");

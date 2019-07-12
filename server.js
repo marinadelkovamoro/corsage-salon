@@ -13,7 +13,7 @@ const bitcoin = require("./helpers/bitcoin-rate");
 
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // set to true in order to get objects with nested arrays/objects
 app.use(express.json());
 app.use(express.static("public"));
 
