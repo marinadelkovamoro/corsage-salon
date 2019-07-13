@@ -40,7 +40,7 @@ function popupConfirmation() {
 
 $(".btn-modal-close").on("click", function(event) {
   $("#confirm-modal").modal("hide");
-  window.location.replace("/");
+  window.location.replace("/cart");
 });
 
 $("#cart-btn-clear").on("click", function(event) {
@@ -48,17 +48,7 @@ $("#cart-btn-clear").on("click", function(event) {
   window.location.replace("/cart");
 });
 
-$(".btn-usd").on("click", function(event) {
-  localStorage.clear();
-  window.location.replace("/cart");
-});
-
-$(".btn-bitcoin").on("click", function(event) {
-  localStorage.clear();
-  window.location.replace("/cart");
-});
-
-$("#cart-btn-checkout").on("click", function(event) {
+function updateDatabaseAfterPurchase() {
   // save to database. then display confirmation page.
   $.ajax("/api/orders", {
     type: "POST",
@@ -68,7 +58,8 @@ $("#cart-btn-checkout").on("click", function(event) {
   })
     .then(function(data) {
       // Reload the page to get the updated list
-      popupConfirmation();
+      localStorage.clear();
+      window.location.replace("/cart");
     })
     .catch(function(error) {
       console.log(error.status);
@@ -90,6 +81,18 @@ $("#cart-btn-checkout").on("click", function(event) {
         }
       }
     });
+}
+
+$(".btn-usd").on("click", function(event) {
+  updateDatabaseAfterPurchase();
+});
+
+$(".btn-bitcoin").on("click", function(event) {
+  updateDatabaseAfterPurchase();
+});
+
+$("#cart-btn-checkout").on("click", function(event) {
+  popupConfirmation();
 });
 
 $("#cart-btn-continue").on("click", function(event) {
