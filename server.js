@@ -8,9 +8,7 @@ const PORT = process.env.PORT || 8080;
 const morgan = require("morgan");
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
-const bitcoin = require("./helpers/bitcoin-rate"); 
-
-
+require("./helpers/bitcoin-rate"); 
 
 // Middleware
 app.use(express.urlencoded({ extended: true })); // set to true in order to get objects with nested arrays/objects
