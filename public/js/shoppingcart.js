@@ -44,50 +44,68 @@ $("#cart-btn-continue").on("click", function(event) {
 });
 
 function getCart() {
-  if (!document.getElementById("cart-page")) {
-    return;
-  }
+  // Fetch latest bitcoin rate then render shopping cart page in the callback
+  fetch("https://bitpay.com/api/rates") // Call the fetch function passing the url of the API as a parameter
+  .then((resp) => resp.json())
+  .then(function(data) {
+      // Your code for handling the data you get from the API
+      console.log("Received data!");
+      let bitcoinRate = data[3].rate;
+      console.log(bitcoinRate);
 
-  var newRow;
-  var pName, pImg, pPrice, pUnits, pDelete;
-  var btnDelete, imgElem;
-
-  var total = 0;
-  var cartPage = $("#cart-page");
-  for (var i = 0; i < myCart.length; i++) {
-    total += myCart[i].price * myCart[i].numItems;
-    newRow = $("<div>")
-      .addClass("row")
-      .attr("item-id", myCart[i].id);
-    pName = $("<div>")
-      .addClass("col cart-item-name")
-      .text(myCart[i].name);
-
-    imgElem = $("<img>")
-      .addClass("cart-item-image img-fluid")
-      .attr("src", myCart[i].image);
-    pImg = $("<div>")
-      .addClass("col")
-      .append(imgElem);
-
-    pPrice = $("<div>").addClass("col");
-    pPrice.append($("<p>").text("$" + myCart[i].price.toLocaleString()));
-    pPrice.append($("<p>").text("Bitcoins"));
-
-    pUnits = $("<div>")
-      .addClass("col")
-      .text(myCart[i].numItems);
-
-    btnDelete = $("<button>")
-      .addClass("btn-cart-delete")
-      .attr("data-productId", myCart[i].id)
-      .text("delete");
-    pDelete = $("<div>")
-      .addClass("col")
-      .append(btnDelete);
-
-    newRow.append(pName, pImg, pPrice, pUnits, pDelete);
-    cartPage.append(newRow, $("<hr>"));
-  }
-  $(".cart-total").text("Total $" + total.toLocaleString() + " / bitcoin?");
+      if (!document.getElementById("cart-page")) {
+        return;
+      }
+    
+      console.log(myCart);
+      var newRow;
+      var pName, pImg, pPrice, pUnits, pDelete;
+      var btnDelete, imgElem;
+    
+      var total = 0;
+      var cartPage = $("#cart-page");
+      for (var i = 0; i < myCart.length; i++) {
+        total += myCart[i].price * myCart[i].numItems;
+        newRow = $("<div>")
+          .addClass("row")
+          .attr("item-id", myCart[i].id);
+        pName = $("<div>")
+          .addClass("col cart-item-name")
+          .text(myCart[i].name);
+    
+        imgElem = $("<img>")
+          .addClass("cart-item-image img-fluid")
+          .attr("src", myCart[i].image);
+        pImg = $("<div>")
+          .addClass("col")
+          .append(imgElem);
+    
+        pPrice = $("<div>").addClass("col");
+        pPrice.append($("<p>").text("$" + myCart[i].price.toLocaleString()));
+    
+        bPrice = $("<div>").addClass("col");
+        bPrice.append($("<p>").text("₿" + (myCart[i].price / bitcoinRate ).toFixed(4)));
+        // pPrice.append($("<p>").text("₿" + calculateBitcoin(myCart[i].price)));
+    
+        pUnits = $("<div>")
+          .addClass("col")
+          .text(myCart[i].numItems);
+    
+        btnDelete = $("<button>")
+          .addClass("btn-cart-delete")
+          .attr("data-productId", myCart[i].id)
+          .text("delete");
+        pDelete = $("<div>")
+          .addClass("col")
+          .append(btnDelete);
+    
+        newRow.append(pName, pImg, pPrice, bPrice, pUnits, pDelete);
+        cartPage.append(newRow, $("<hr>"));
+      }
+      $(".cart-total").text("Total $" + total.toLocaleString() + " / ₿" + (total / bitcoinRate ).toFixed(4));
+  }) // End of api call
+  .catch(function(error) {
+      // This is where you run code if the server returns any errors
+      console.log("Sorry there was an error " + error);
+  });
 }
