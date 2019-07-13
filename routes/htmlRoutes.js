@@ -28,6 +28,7 @@ module.exports = app => {
       if (req.user) {
         data.user = req.user.name;
       }
+      // data.bitcoinRate = global.bitcoinRate;
       res.render("shoppingcart", data);
     });
   });

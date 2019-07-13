@@ -16,7 +16,8 @@ $("#user-login").on("submit", function(e) {
       window.location.replace("/");
     })
     .catch(function(err) {
-      console.log(err);
-      alert(err.responseText);
+      $("#login-error").text("Authentication failed. Please try again!");
+      $("#email").val("");
+      $("#password").val("");
     });
 });

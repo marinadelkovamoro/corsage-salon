@@ -25,7 +25,7 @@ function handlePurchaseButton(e) {
     numItems: parseInt(
       $(this)
         .parent()
-        .find("#num-items").val())
+        .find(".num-items").val())
   };
   myCart.push(transaction);
   localStorage.setItem("mycart", JSON.stringify(myCart));

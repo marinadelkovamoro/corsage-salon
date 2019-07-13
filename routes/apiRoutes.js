@@ -3,55 +3,91 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = app => {
-  // Get all examples -- kktodo
-  app.get("/api/examples", isAuthenticated, (req, res) => {
-    db.Example.findAll({
-      where: {
-        UserId: req.user.id
+  function updateInventory(newInv, currIndex, res) {
+
+    db.Product.update(
+      { quantity: newInv[currIndex].newQuantity },
+      {
+        where: {
+          id: newInv[currIndex].id
+        }
       }
-    }).then(dbExamples => {
-      res.json(dbExamples);
+    ).then(result => {
+      currIndex++;
+      if (currIndex < newInv.length) {
+        updateInventory(newInv, currIndex, res);
+      } else {
+        res.json(result);
+      }
     });
-  });
+  }
 
-  // Create new product endpoint. TODO Call on Coinbase API to generate checkout link.
-  app.post("/api/products", (req, res) => {
-    // TODO Step 1) Create bitcoin checkout page link here
-    // Step 2) Create product
-    db.Product.create({
-      name: req.body.name,
-      quantity: req.body.quantity,
-      image: req.body.image,
-      details: req.body.details,
-      price: req.body.price,
-      CategoryId: req.body.CategoryId
-    }).then(product_returned => {
-      console.log("Product created");
-      console.log(product_returned);
-      console.log(" ");
-      console.log(" ");
-      res.json(product_returned);
-    });
-  });
+  function saveCart(userId, cartData, res) {
+    // first : check if enough item in stock.
+    // also create array of product inventory that will be used for updating inventory after purchase.
+    var ptotal = 0;
+    for (var i = 0; i < cartData.length; i++) {
+      cartData[i].id = parseInt(cartData[i].id);
+      cartData[i].price = parseInt(cartData[i].price);
+      cartData[i].numItems = parseInt(cartData[i].numItems);
+      ptotal += cartData[i].price * cartData[i].numItems;
+    }
 
-  // Create a new example
-  // Create a new example - kktodo
-  app.post("/api/examples", isAuthenticated, (req, res) => {
-    db.Example.create({
-      UserId: req.user.id,
-      text: req.body.text,
-      description: req.body.description
-    }).then(dbExample => {
-      res.json(dbExample);
+    db.Product.findAll({}).then(function(products) {
+      var updateList = [];
+      var outList = [];
+      for (var x = 0; x < cartData.length; x++) {
+        for (var i = 0; i < products.length; i++) {
+          if (cartData[x].id === products[i].id) {
+            if (products[i].quantity < cartData[x].numItems) {
+              var item = { 
+                id: cartData[x].id ,
+                numItems: products[i].quantity
+              };
+              outList.push(item);
+            } else {
+              var item = {
+                id: cartData[x].id,
+                newQuantity: products[i].quantity - cartData[x].numItems
+              };
+              updateList.push(item);
+            }
+            break;
+          }
+        }
+      }
+      console.log(outList);
+      if (outList.length > 0) {
+        // not enough inventory
+        res.status(601).json(outList);
+      } else {
+        // all good.
+        // 1. create a record in Order table.
+        db.Order.create({
+          total: ptotal,
+          UserId: userId
+        })
+          .then(dbCreate => {
+            // 2. create records in transaction table.
+            var transArr = [];
+            for (var i = 0; i < cartData.length; i++) {
+              var trans = {
+                numberofItems: cartData[i].numItems,
+                price: cartData[i].price,
+                OrderId: dbCreate.id,
+                ProductId: cartData[i].id
+              };
+              transArr.push(trans);
+            }
+            return db.Transaction.bulkCreate(transArr);
+          })
+          .then(() => {
+            // 3. Update inventory
+            updateInventory(updateList, 0, res);
+          });
+      }
     });
-  });
-
-  // Delete an example by id  -kktodo
-  app.delete("/api/examples/:id", isAuthenticated, (req, res) => {
-    db.Example.destroy({ where: { id: req.params.id } }).then(dbExample => {
-      res.json(dbExample);
-    });
-  });
+  }
 
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -79,11 +115,15 @@ module.exports = app => {
         res.status(422).json(err.errors[0].message);
       });
   });
+
   app.post("/api/orders", function(req, res) {
-    console.log(req.body.order);
-    // db.Products.(["quantity"], [req.body.quantity], function(result) {
-    //   res.json({ quantity: result.quantity });
-    // });
+    if (req.user) {
+      saveCart(req.user.id, req.body.order, res);
+    } else {
+      // not logged in
+      // res.status(401).json({ test: "hello"} );
+      res.status(401).end();
+    }
   });
 
   // Route for logging user out
@@ -91,11 +131,4 @@ module.exports = app => {
     req.logout();
     res.redirect("/");
   });
-
-  // app.post("/api/order", (req, res) => {
-  //   db.Order.create(req.body)
-  //   .then(function(){
-  //     res.
-  //   });
-  // });
 };

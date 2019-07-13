@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/styles/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Home Page</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 
 <body onload="getCart()">
@@ -61,9 +63,40 @@
   <div class="container">
     {{{body}}}
   </div>
+  <div id="confirm-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation Page</h4>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row table-title">
+            <div class="col">Product Name</div>
+            <div class="col">Price</div>
+            <div class="col">Quantity</div>
+          </div>
+          <hr>
+          <div class="modal-products">
+            
+          </div>
+        </div>
+      
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-usd">Purchase with USD</button>
+          <button type="button" class="btn btn-success btn-bitcoin mr-auto">Purchase with Bitcoin</button>
+          <h4 class="modal-total pt-2 mr-3"></h4>
+          <button type="button" class="btn btn-danger btn-modal-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
@@ -72,8 +105,8 @@
     crossorigin="anonymous"></script>
   <script src="/js/signup.js"></script>
   <script src="/js/login.js"></script>
-    <script src="/js/product.js"></script>
-      <script src="/js/shoppingcart.js"></script>
+  <script src="/js/product.js"></script>
+  <script src="/js/shoppingcart.js"></script>
 
 
 </body>
