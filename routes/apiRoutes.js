@@ -3,72 +3,90 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = app => {
-  function updateInventory(newInv, res) {
-    console.log(newInv);
-    // db.Product.update(
-    //   { quantity: newInv[0].newQuantity },
-    //   {
-    //     where: {
-    //       id: newInv[0].id
-    //     }
-    //   }
-    // ).then(result => {
-    //   res.json(result);
-    // });
+  function updateInventory(newInv, currIndex, res) {
+
+    db.Product.update(
+      { quantity: newInv[currIndex].newQuantity },
+      {
+        where: {
+          id: newInv[currIndex].id
+        }
+      }
+    ).then(result => {
+      currIndex++;
+      if (currIndex < newInv.length) {
+        updateInventory(newInv, currIndex, res);
+      } else {
+        res.json(result);
+      }
+    });
   }
 
   function saveCart(userId, cartData, res) {
+    // first : check if enough item in stock.
+    // also create array of product inventory that will be used for updating inventory after purchase.
     var ptotal = 0;
-
     for (var i = 0; i < cartData.length; i++) {
       cartData[i].id = parseInt(cartData[i].id);
       cartData[i].price = parseInt(cartData[i].price);
       cartData[i].numItems = parseInt(cartData[i].numItems);
       ptotal += cartData[i].price * cartData[i].numItems;
     }
-    // 1. create a record in Order table.
-    db.Order.create({
-      total: ptotal,
-      UserId: userId
-    })
-      .then(dbCreate => {
-        // console.log(dbCreate);
-        // 2. create records in transaction table.
-        var transArr = [];
-        for (var i = 0; i < cartData.length; i++) {
-          var trans = {
-            numberofItems: cartData[i].numItems,
-            price: cartData[i].price,
-            OrderId: dbCreate.id,
-            ProductId: cartData[i].id
-          };
-          transArr.push(trans);
-        }
-        return db.Transaction.bulkCreate(transArr);
-      })
-      .then(() => {
-        // 3. Update inventory
-        db.Product.findAll({}).then(function(products) {
-          // console.log(products);
-          var updateList = [];
 
-          for (var x = 0; x < cartData.length; x++) {
-            // console.log(cartData[x]);
-            for (var i = 0; i < products.length; i++) {
-              // console.log(products[i].dataValues);
-              if (cartData[x].id === products[i].id) {
-                var item = {
-                  id: cartData[x].id,
-                  newQuantity: products[i].quantity - cartData[x].numItems
-                };
-                updateList.push(item);
-                break;
-              }
+    db.Product.findAll({}).then(function(products) {
+      var updateList = [];
+      var outList = [];
+      for (var x = 0; x < cartData.length; x++) {
+        for (var i = 0; i < products.length; i++) {
+          if (cartData[x].id === products[i].id) {
+            if (products[i].quantity < cartData[x].numItems) {
+              var item = { 
+                id: cartData[x].id ,
+                numItems: products[i].quantity
+              };
+              outList.push(item);
+            } else {
+              var item = {
+                id: cartData[x].id,
+                newQuantity: products[i].quantity - cartData[x].numItems
+              };
+              updateList.push(item);
             }
+            break;
           }
-          updateInventory(updateList, res);
-        });
-      });
+        }
+      }
+      console.log(outList);
+      if (outList.length > 0) {
+        // not enough inventory
+        res.status(601).json(outList);
+      } else {
+        // all good.
+        // 1. create a record in Order table.
+        db.Order.create({
+          total: ptotal,
+          UserId: userId
+        })
+          .then(dbCreate => {
+            // 2. create records in transaction table.
+            var transArr = [];
+            for (var i = 0; i < cartData.length; i++) {
+              var trans = {
+                numberofItems: cartData[i].numItems,
+                price: cartData[i].price,
+                OrderId: dbCreate.id,
+                ProductId: cartData[i].id
+              };
+              transArr.push(trans);
+            }
+            return db.Transaction.bulkCreate(transArr);
+          })
+          .then(() => {
+            // 3. Update inventory
+            updateInventory(updateList, 0, res);
+          });
+      }
+    });
   }
 
   // Using the passport.authenticate middleware with our local strategy.
@@ -104,6 +122,7 @@ module.exports = app => {
       saveCart(req.user.id, req.body.order, res);
     } else {
       // not logged in
+      // res.status(401).json({ test: "hello"} );
       res.status(401).end();
     }
   });
@@ -114,4 +133,3 @@ module.exports = app => {
     res.redirect("/");
   });
 };
-;
