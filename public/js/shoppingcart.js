@@ -3,8 +3,28 @@ if (!myCart) {
   myCart = [];
 }
 
+var currentRate;
+
+function fetchBitcoin() {
+  $.get("https://bitpay.com/api/rates")
+    .then(data => {
+      console.log("====================================================");
+      currentRate = data[2].rate;
+      // BITCOIN = $11,622;
+      // DOLLAR = 1 / 11622
+      console.log(data[2].rate);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+
+}
+fetchBitcoin();
+
 $("#cart-btn-checkout").on("click", function(event) {
   // save to database. then display confirmation page.
+  console.log(myCart);
   $.ajax("/api/orders", {
     type: "POST",
     data: {
