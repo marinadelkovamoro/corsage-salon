@@ -1,33 +1,36 @@
-# node-handlebars-passport-boilerplate 🍽️
+# Corsage Salon - Wedding E-Commerce 
+
 
 ## Introduction
 
-This project is meant to be boilerplate for express, sequelize, handlebars, and passport.
+This is a one-stop wedding E-commerce website created to offer ease and a streamlined purchasing process 
+
+## Technologies Used:
+------------ 
+* Node and Express web server
+* MySQL database with a Sequelize ORM 
+* Handlebars
+* MVC 
+* Restful API
+* Bitcoin API and BitPay Server
+* Ajax
+* jQuery
+
+## Demo
+------------ 
+You can find a demo of the app here:
+
+https://wed-ecommerce-corsage-salon.herokuapp.com/
+
+## Direction for Future Development 
+------------ 
+* Add products/ details
+* Store Order History
+* Add complete payment processing page after the confirmation page
+* Add payment options: Bitcoin, Apple Pay, Venmo, PayPal, Credit Card, etc.
+* Incorporate Unit testing - Mocha/Chai
 
 
-## Installation
-
-1. Create a mysql database called `exampledb`
-
-2. Update the `config.json` to match your local database, username, password
-
-3. Add a `.env` at the top level of this project. 
-
-4. Then inside of the .env add a SERVER_SECRET set to any value you'd like
-```
-SERVER_SECRET = 123456
-```
-
-5. `npm install`
-
-6. `node server.js`
-
-## Demo of this App
-
-You can find a demo of this app here:
-
-https://node-passport-sequelize.herokuapp.com/
-
-## GitHub for this App
-
+## GitHub for this App's boilerplate - express, sequelize, handlebars, and passport.
+------------ 
 https://github.com/Travo100/project-two-starter-code-with-auth

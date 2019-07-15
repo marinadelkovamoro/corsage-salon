@@ -15,10 +15,12 @@
 </head>
 
 <body onload="getCart()">
+  {{!-- Image text --}}
   <div class="text">
     <p>And they lived happily ever after...</p>
   </div>
 
+  {{!-- Navbar --}}
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="/"> <img class="logo" src="/images/heartlogo.png" /> </a>
@@ -28,7 +30,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-
           {{#each categories}}
           <li class="nav-item">
             <a class="nav-link" href="/products/{{id}}">{{name}}</a>
@@ -60,9 +61,31 @@
     </div>
   </nav>
 
+
   <div class="container">
     {{{body}}}
+    {{!-- FUTURE DEVELOPMENT --}}
+    {{!-- Footer - There is empty body on the home page and therefore the footer is displayed at the top of the page --}}
+    {{!-- TO FIX - ADD A CLASS CALLED WRAPPER AND DO NOT TRY TO REUSE ANY BOOTSTRAP CONTAINER CLASSES --}}
+     {{!-- <footer>
+      <div class="card-footer text-muted text-center">
+        <h5 class="card-title">Made By:
+          <a class="text-blue" target="_blank" href="https://github.com/kkiathub"><i class="fa fa-github"></i>Kanwee
+            Kiatnikorn</a>
+          <a class="text-blue" target="_blank" href="https://github.com/marinadelkovamoro"><i class="fa fa-github"></i>
+            Marina Delkova-Moro</a>
+          <a class="text-blue" target="_blank" href="https://github.com/soul1904"><i class="fa fa-github"></i> Soheil
+            Behzad</a>
+          <a class="text-blue" target="_blank" href="https://github.com/xxdamianxx"><i class="fa fa-github"></i>
+            Damian Sanchez</a>
+          <br>
+          Copyright © 2019</h5>
+      </div>
+    </footer>  --}}
+
+
   </div>
+
   <div id="confirm-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
@@ -82,10 +105,9 @@
           </div>
           <hr>
           <div class="modal-products">
-            
           </div>
         </div>
-      
+
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-success btn-usd">Purchase with USD</button>
@@ -97,6 +119,8 @@
     </div>
   </div>
 
+
+  {{!-- Script --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
@@ -107,7 +131,6 @@
   <script src="/js/login.js"></script>
   <script src="/js/product.js"></script>
   <script src="/js/shoppingcart.js"></script>
-
 
 </body>
 

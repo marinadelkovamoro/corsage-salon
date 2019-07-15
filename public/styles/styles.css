@@ -1,4 +1,5 @@
 body {
+   position: relative;
     height: 100%;
     margin: 0;
     background-position: center;
@@ -6,16 +7,12 @@ body {
     background-size: cover;
     background-image: url("../images/main.jpg");
     background-attachment: fixed;
-
 }
+
 .card {
 background-color: rgba(255, 255, 255, 0.7);
 font-family: 'Playfair Display SC', serif;
 font-size: 25px;
-}
-
-body {
-  position: relative;
 }
 
 /* Top Left text over background image */
@@ -37,6 +34,11 @@ nav, .navbar-brand {
     font-size: 35px;
     letter-spacing: 0.5px;
 }
+
+/* footer{
+  position: relative;
+  bottom: 0;
+} */
 
 .num-items {
   width: 120px;
